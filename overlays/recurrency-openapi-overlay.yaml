@@ -1,0 +1,21 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Recurrency API
+  version: 1.0.0
+extends: openapi/recurrency-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-21'
+      x-apievangelist-source: https://recurrency.gitbook.io/recurrency/
+      x-apievangelist-notes: >-
+        Recurrency additionally operates a hosted MCP server at
+        api.recurrency.com/mcp secured by login.recurrency.ai (Auth0) with
+        recurrency:mcp:* scopes; see mcp/ and well-known/ artifacts.
+  - target: $.info
+    update:
+      x-mcp-server: https://api.recurrency.com/mcp
+  - target: $.components.schemas.Error
+    update:
+      x-error-format: custom
+      x-error-cross-ref: errors/recurrency-problem-types.yml

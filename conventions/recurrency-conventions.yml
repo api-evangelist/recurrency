@@ -1,0 +1,41 @@
+generated: '2026-07-21'
+method: searched
+source: https://recurrency.gitbook.io/recurrency/ + openapi/recurrency-openapi.yml
+authentication:
+  style: oauth2-bearer
+  scheme: OAuth 2.0 client-credentials -> Bearer access token
+  header: 'authorization: Bearer {access_token}'
+  token_endpoint: https://api.recurrency.com/oauth/token
+  token_ttl_seconds: 604800
+  cross_ref: authentication/recurrency-authentication.yml
+idempotency:
+  supported: false
+  notes: No idempotency-key header is documented for write operations (uploadItems, createOrder).
+pagination:
+  style: offset-limit
+  params:
+    limit: { default: 20, description: Results per page. }
+    offset: { default: 0, description: Zero-based pagination offset. }
+  sorting:
+    sortBy: Field to sort by (endpoint-specific enum).
+    sortDir: Asc or Desc.
+  response_fields:
+    items: Array of results (or `orders` on the orders list).
+    totalCount: Total number of matching records.
+  applies_to:
+    - openapi/recurrency-openapi.yml#listItems
+    - openapi/recurrency-openapi.yml#listItemLocations
+    - openapi/recurrency-openapi.yml#listItemGroups
+versioning:
+  style: unversioned-path
+  cross_ref: lifecycle/recurrency-lifecycle.yml
+error_envelope:
+  shape: '{ message: string, details: object }'
+  format: custom
+  cross_ref: errors/recurrency-problem-types.yml
+batching:
+  upload_items_max: 100
+  notes: uploadItems accepts up to 100 items per request.
+rate_limiting:
+  documented: false
+  notes: No rate-limit headers or policy documented in the public developer docs.

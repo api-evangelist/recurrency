@@ -1,0 +1,20 @@
+{
+  "issuer": "https://login.recurrency.ai/",
+  "authorization_endpoint": "https://login.recurrency.ai/authorize",
+  "token_endpoint": "https://login.recurrency.ai/oauth/token",
+  "scopes_supported": [
+    "recurrency:mcp:admin",
+    "recurrency:mcp:tenant:read",
+    "recurrency:mcp:tenant:write"
+  ],
+  "response_types_supported": [
+    "code"
+  ],
+  "grant_types_supported": [
+    "authorization_code",
+    "refresh_token"
+  ],
+  "code_challenge_methods_supported": [
+    "S256"
+  ]
+}

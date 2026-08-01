@@ -1,9 +1,29 @@
 aid: recurrency
 name: Recurrency
-description: 'Recurrency is a company surfaced as a portfolio company of bessemer-venture-partners and
-  added to the API Evangelist network as a stub for enrichment. Sector: ai-ml. This profile is a lead
-  awaiting the enrichment pipeline.'
+description: >-
+  Recurrency is an AI-powered ERP automation platform for wholesale distributors
+  and B2B suppliers, sitting on top of distribution ERPs to automate and optimize
+  purchasing and sales — forecasting, pricing, reorders and product
+  recommendations across sales, purchasing and operations workflows. Recurrency
+  exposes a public e-procurement REST API (documented on GitBook) for
+  authenticating, retrieving and filtering a supplier's product catalog (items,
+  availability, pricing, locations, groups), uploading catalog data, and creating
+  and managing sales orders and quotes. It also operates a hosted, OAuth-secured
+  MCP server for agent access. Backed by Bessemer Venture Partners.
 url: https://raw.githubusercontent.com/api-evangelist/recurrency/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://storage.googleapis.com/s.mkswft.com/RmlsZTpiNjE4NGRjYy01OGVjLTQ2YWQtOWMyMS0zNjJiZWZiNmYxOTM=/recurrency-dashboard.webp
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -12,16 +32,110 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Ai Ml
-apis: []
+- ERP
+- Distribution
+- Wholesale
+- E-Procurement
+- Supply Chain
+- Orders
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: recurrency:recurrency-e-procurement-api
+  name: Recurrency E-Procurement API
+  description: Supplier product catalog retrieval, filtering and upload.
+  humanURL: https://recurrency.gitbook.io/recurrency/
+  baseURL: https://api.recurrency.com
+  tags:
+  - E-Procurement
+  properties:
+  - type: OpenAPI
+    url: openapi/recurrency-e-procurement-api-openapi.yml
+  - type: Documentation
+    url: https://recurrency.gitbook.io/recurrency/
+  - type: APIReference
+    url: https://recurrency.gitbook.io/recurrency/
+  - type: GettingStarted
+    url: https://recurrency.gitbook.io/recurrency/readme
+- aid: recurrency:recurrency-orders-api
+  name: Recurrency Orders API
+  description: Create, list and retrieve sales orders and quotes.
+  humanURL: https://recurrency.gitbook.io/recurrency/
+  baseURL: https://api.recurrency.com
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/recurrency-orders-api-openapi.yml
+  - type: Documentation
+    url: https://recurrency.gitbook.io/recurrency/
+  - type: APIReference
+    url: https://recurrency.gitbook.io/recurrency/
+  - type: GettingStarted
+    url: https://recurrency.gitbook.io/recurrency/readme
 common:
+- type: DeveloperPortal
+  url: https://recurrency.gitbook.io/recurrency/
+- type: Documentation
+  url: https://recurrency.gitbook.io/recurrency/
+- type: Authentication
+  url: authentication/recurrency-authentication.yml
+- type: OAuthScopes
+  url: scopes/recurrency-scopes.yml
+- type: MCPServer
+  url: mcp/recurrency-mcp.yml
+- type: LLMsTxt
+  url: llms/recurrency-llms.txt
+- type: WellKnown
+  url: well-known/recurrency-well-known.yml
+- type: SecurityTxt
+  url: well-known/recurrency-security.txt
+- type: Conformance
+  url: conformance/recurrency-conformance.yml
+- type: ErrorCatalog
+  url: errors/recurrency-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/recurrency-lifecycle.yml
+- type: Conventions
+  url: conventions/recurrency-conventions.yml
+- type: Sandbox
+  url: sandbox/recurrency-sandbox.yml
+- type: DataModel
+  url: data-model/recurrency-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Arazzo
+  name: Recurrency procure-to-pay
+  url: arazzo/recurrency-procure-to-pay.yml
+- type: DomainSecurity
+  url: security/recurrency-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/recurrency-vulnerability-disclosure.yml
+- type: Security
+  url: security/recurrency-vulnerability-disclosure.yml
+- type: Blog
+  url: https://www.recurrency.com/blog
+- type: GitHubOrganization
+  url: https://github.com/recurrency
+- type: Support
+  url: https://recurrency.gitbook.io/recurrency/support/need-help
+- type: SignUp
+  url: https://www.recurrency.com/demo
+- type: TermsOfService
+  url: https://www.recurrency.com/terms
+- type: PrivacyPolicy
+  url: https://www.recurrency.com/privacy
 - type: Website
   url: https://www.recurrency.com/
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 24
+  pass: local-v1

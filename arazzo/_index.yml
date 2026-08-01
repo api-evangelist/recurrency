@@ -1,0 +1,8 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/recurrency-openapi.yml
+workflows:
+  - file: recurrency-procure-to-pay.yml
+    workflowId: procureToPay
+    title: Recurrency procure-to-pay
+    summary: Discover a supplier, find an item, confirm price, create an order, and read it back.

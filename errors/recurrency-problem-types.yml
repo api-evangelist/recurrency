@@ -1,0 +1,36 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/recurrency-openapi.yml + https://recurrency.gitbook.io/recurrency/
+format: custom
+envelope:
+  description: >-
+    Recurrency returns errors as a JSON object with a human-readable `message`
+    and a `details` object carrying field-level error information keyed by field
+    path. This is a custom envelope, not RFC 9457 application/problem+json.
+  fields:
+    message: Human-readable error message.
+    details: Object of field-level validation/error details keyed by field path.
+  example:
+    message: Invalid request
+    details:
+      product_name: product_name is required
+problems:
+  - status: 400
+    title: Bad Request / validation error
+    remediation: Check the details object for the offending field paths; ensure required fields (e.g. product_name) are present and limits (max 100 items/request) are respected.
+    source_operations:
+      - openapi/recurrency-openapi.yml#uploadItems
+      - openapi/recurrency-openapi.yml#createOrder
+      - openapi/recurrency-openapi.yml#getItemPrice
+      - openapi/recurrency-openapi.yml#listItems
+  - status: 401
+    title: Unauthorized
+    remediation: 'Obtain a Bearer access token from the token endpoint and send it as `authorization: Bearer {token}`; tokens expire after 7 days.'
+    source_operations:
+      - openapi/recurrency-openapi.yml#listSuppliers
+  - status: 404
+    title: Not Found
+    remediation: Verify the supplierSlug, itemId or salesOrderId exists and is visible to your tenant.
+    source_operations:
+      - openapi/recurrency-openapi.yml#getItemPrice
+      - openapi/recurrency-openapi.yml#getOrderDetails

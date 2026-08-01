@@ -1,0 +1,33 @@
+# Recurrency
+
+## Recurrency
+
+- [Getting Started](https://recurrency.gitbook.io/recurrency/readme.md): Recurrency is an artificial intelligence tool that helps wholesale distributors and B2B retailers automate and optimize their purchasing and sales processes.
+- [Getting an Access Token](https://recurrency.gitbook.io/recurrency/authentication/getting-an-access-token.md)
+- [Tutorial on Procure-to-Pay](https://recurrency.gitbook.io/recurrency/e-procurement/procure-to-pay-tutorial.md)
+- [List Available Suppliers](https://recurrency.gitbook.io/recurrency/e-procurement/get-supplier-list.md): API routes to retrieve and filter supplier's product catalog data, i.e., item, availability, pricing etc.
+- [Upload Products](https://recurrency.gitbook.io/recurrency/e-procurement/post-items.md)
+- [Retrieve Products](https://recurrency.gitbook.io/recurrency/e-procurement/get-items.md): API routes to retrieve and filter supplier's product catalog data, i.e., item, availability, pricing etc.
+- [Retrieve Product Locations](https://recurrency.gitbook.io/recurrency/e-procurement/get-item-locations.md): API routes to retrieve and filter supplier's product catalog data, i.e., item, availability, pricing etc.
+- [Retrieve Product Catalogs](https://recurrency.gitbook.io/recurrency/e-procurement/get-item-groups.md): API routes to retrieve and filter supplier's product catalog data, i.e., item, availability, pricing etc.
+- [Retrieve Product Price](https://recurrency.gitbook.io/recurrency/e-procurement/get-item-price.md): API routes to retrieve and filter supplier's product catalog data, i.e., item, availability, pricing etc.
+- [Create an Order/Quote](https://recurrency.gitbook.io/recurrency/e-procurement/create-order.md): API route to create a new order with detailed order and line item information.
+- [Retrieve an Order/Quote](https://recurrency.gitbook.io/recurrency/e-procurement/get-order.md): API route to retrieve detailed order information.
+- [Retrieve Orders/Quotes List](https://recurrency.gitbook.io/recurrency/e-procurement/list-orders.md): API route to retrieve detailed order information.
+- [Need Help?](https://recurrency.gitbook.io/recurrency/support/need-help.md): Recurrency Support is always available.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information, you can query the documentation dynamically by asking a question.
+Perform an HTTP GET request on a page URL with the `ask` query parameter:
+```
+GET https://recurrency.gitbook.io/recurrency/readme.md?ask=<question>
+```
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,12 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/recurrency-openapi.yml
+skills:
+  - file: recurrency-procure-to-pay.md
+    name: Recurrency procure-to-pay
+    api: openapi/recurrency-openapi.yml
+    operations: [listSuppliers, listItems, getItemPrice, createOrder, getOrderDetails]
+  - file: recurrency-upload-catalog.md
+    name: Recurrency upload supplier catalog
+    api: openapi/recurrency-openapi.yml
+    operations: [listSuppliers, uploadItems, listItems]

@@ -1,0 +1,37 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/recurrency-openapi.yml + https://recurrency.gitbook.io/recurrency/
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: OpenAPI securityScheme type oauth2 (clientCredentials); MCP auth server advertises OAuth 2.0.
+  - id: oauth2-client-credentials
+    conforms: true
+    evidence: Token endpoint documented with grant_type=client_credentials returning a Bearer token.
+  - id: oidc
+    conforms: true
+    evidence: login.recurrency.ai publishes /.well-known/openid-configuration (Auth0-backed).
+  - id: rfc8414-oauth-authorization-server-metadata
+    conforms: true
+    evidence: api.recurrency.com/.well-known/oauth-authorization-server returns 200.
+  - id: rfc9728-oauth-protected-resource
+    conforms: true
+    evidence: api.recurrency.com/.well-known/oauth-protected-resource returns 200.
+  - id: rfc9116-security-txt
+    conforms: true
+    evidence: www.recurrency.com/.well-known/security.txt returns 200 with a Contact.
+  - id: mcp
+    conforms: true
+    evidence: Hosted streamable-HTTP MCP server at api.recurrency.com/mcp (OAuth-gated).
+  - id: pkce
+    conforms: true
+    evidence: code_challenge_methods_supported includes S256.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a custom {message, details} envelope, not application/problem+json.
+  - id: pagination-offset-limit
+    conforms: true
+    evidence: List endpoints use limit/offset (default 20/0) with sortBy/sortDir.
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency-key header documented on write operations.

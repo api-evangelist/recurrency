@@ -1,0 +1,60 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/recurrency-openapi.yml
+entities:
+  - name: Supplier
+    key: slug
+    description: A supplier available to the tenant; slug keys the catalog endpoints.
+  - name: Item
+    key: itemId
+    description: A product in a supplier's catalog.
+  - name: Location
+    key: locationId
+    description: A stocking/sales location for a supplier.
+  - name: ItemGroup
+    key: itemGroupId
+    description: A catalog / grouping of items, scoped to a company.
+  - name: ItemPrice
+    description: Availability and pricing for an item at a sales/source location.
+  - name: Order
+    key: salesOrderId
+    description: A sales order or quote with header fields and line items.
+  - name: OrderLine
+    description: A line item on an order (item, quantity, unit price).
+relationships:
+  - from: Item
+    to: Supplier
+    type: belongs_to
+    via: supplierSlug
+  - from: Location
+    to: Supplier
+    type: belongs_to
+    via: supplierSlug
+  - from: ItemGroup
+    to: Supplier
+    type: belongs_to
+    via: supplierSlug
+  - from: ItemGroup
+    to: Company
+    type: belongs_to
+    via: companyId
+  - from: ItemPrice
+    to: Item
+    type: belongs_to
+    via: itemId
+  - from: ItemPrice
+    to: Location
+    type: belongs_to
+    via: salesLocId / sourceLocId
+  - from: Order
+    to: Customer
+    type: belongs_to
+    via: customerId
+  - from: Order
+    to: OrderLine
+    type: has_many
+    via: lines
+  - from: OrderLine
+    to: Item
+    type: belongs_to
+    via: itemId

@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: searched
+status: published
+source: https://api.recurrency.com/mcp
+notes: >-
+  Recurrency operates a hosted, remote MCP server. GET returns 405 Method Not
+  Allowed and an unauthenticated JSON-RPC initialize returns 401 Unauthorized,
+  confirming a live streamable-HTTP MCP endpoint gated by OAuth. Discovery is
+  advertised via /.well-known/oauth-protected-resource (resource
+  https://core-api.recurrency.ai) and /.well-known/oauth-authorization-server,
+  which points at the login.recurrency.ai authorization server and the
+  recurrency:mcp:* scopes below. Tool list requires a valid token and was not
+  enumerated during this pass.
+server:
+  name: recurrency
+  transport: http
+  url: https://api.recurrency.com/mcp
+  protected_resource: https://core-api.recurrency.ai
+authorization:
+  type: oauth2
+  authorization_server: https://login.recurrency.ai/
+  authorization_endpoint: https://login.recurrency.ai/authorize
+  token_endpoint: https://login.recurrency.ai/oauth/token
+  grant_types: [authorization_code, refresh_token]
+  code_challenge_methods: [S256]
+  scopes:
+    - recurrency:mcp:admin
+    - recurrency:mcp:tenant:read
+    - recurrency:mcp:tenant:write
+tools: []

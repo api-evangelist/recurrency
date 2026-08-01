@@ -1,0 +1,6 @@
+{
+  "resource": "https://core-api.recurrency.ai",
+  "authorization_servers": [
+    "https://login.recurrency.ai/"
+  ]
+}

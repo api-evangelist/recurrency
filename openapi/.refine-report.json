@@ -1,0 +1,16 @@
+{
+  "provider": "recurrency",
+  "sources": [
+    "recurrency-e-procurement-api-openapi.yml",
+    "recurrency-orders-api-openapi.yml"
+  ],
+  "outputs": [
+    "recurrency-e-procurement-api-openapi.yml",
+    "recurrency-orders-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

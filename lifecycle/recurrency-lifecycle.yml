@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: searched
+source: https://recurrency.gitbook.io/recurrency/
+versioning:
+  scheme: unversioned-path
+  current: null
+  notes: >-
+    The documented REST endpoints are served under unversioned paths
+    (/marketplace/..., /orders, /order-details/...). No public version header or
+    URI version segment is documented.
+environments:
+  production: https://api.recurrency.com
+  staging: https://api-staging.recurrency.com
+tokens:
+  access_token_ttl_seconds: 604800
+  notes: OAuth client-credentials access tokens are valid for 7 days.
+deprecation:
+  policy_url: null
+  sunset_header: null
+  notes: No public deprecation/sunset policy located.
+sla:
+  url: null
+status_page: null
+deprecated_operations: []

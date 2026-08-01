@@ -1,0 +1,20 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/recurrency-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.recurrency.com/oauth/token
+    scopes: 1
+  description: 'OAuth 2.0 client-credentials. POST to the token endpoint with grant_type=client_credentials
+    plus client_id/client_secret to receive a Bearer access token (scope recurrency:api:tenant),
+    valid for 7 days (604800 seconds). Send it as `authorization: Bearer {token}`.'
+  sources:
+  - openapi/recurrency-openapi.yml

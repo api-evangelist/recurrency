@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: searched
+source: https://recurrency.gitbook.io/recurrency/ (Environments + Getting an Access Token)
+test_vs_live:
+  model: separate-hosts
+  description: >-
+    Recurrency publishes a dedicated staging environment separate from
+    production. The docs recommend starting on staging for initial setup, then
+    switching to production for live data. Credentials/tokens are obtained from
+    the same OAuth client-credentials flow against the corresponding host.
+environments:
+  - name: staging
+    base_url: https://api-staging.recurrency.com
+    token_endpoint: https://api-staging.recurrency.com/oauth/token
+    purpose: Initial setup and integration testing.
+  - name: production
+    base_url: https://api.recurrency.com
+    token_endpoint: https://api.recurrency.com/oauth/token
+    purpose: Live data.
+test_values:
+  notes: >-
+    The docs do not publish fixed magic test identifiers (test cards, test IBANs,
+    simulator IDs). Test data is tenant-provisioned within the staging
+    environment. None fabricated here.

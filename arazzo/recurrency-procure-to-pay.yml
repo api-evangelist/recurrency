@@ -1,0 +1,66 @@
+arazzo: 1.0.1
+info:
+  title: Recurrency procure-to-pay
+  version: 1.0.0
+  summary: Discover a supplier, find an item, confirm price, create an order, and read it back.
+sourceDescriptions:
+  - name: recurrency
+    url: ../openapi/recurrency-openapi.yml
+    type: openapi
+workflows:
+  - workflowId: procureToPay
+    summary: End-to-end supplier discovery to placed order.
+    inputs:
+      type: object
+      properties:
+        searchQuery: { type: string }
+        salesLocId: { type: string }
+        sourceLocId: { type: string }
+        customerId: { type: string }
+        qtyOrdered: { type: string }
+      required: [salesLocId, sourceLocId, customerId, qtyOrdered]
+    steps:
+      - stepId: findSupplier
+        operationId: listSuppliers
+        outputs:
+          supplierSlug: $response.body#/items/0/slug
+      - stepId: findItem
+        operationId: listItems
+        parameters:
+          - { name: supplierSlug, in: path, value: $steps.findSupplier.outputs.supplierSlug }
+          - { name: searchQuery, in: query, value: $inputs.searchQuery }
+          - { name: limit, in: query, value: 1 }
+        outputs:
+          itemId: $response.body#/items/0/itemId
+      - stepId: checkPrice
+        operationId: getItemPrice
+        parameters:
+          - { name: supplierSlug, in: path, value: $steps.findSupplier.outputs.supplierSlug }
+          - { name: itemId, in: query, value: $steps.findItem.outputs.itemId }
+          - { name: salesLocId, in: query, value: $inputs.salesLocId }
+          - { name: sourceLocId, in: query, value: $inputs.sourceLocId }
+        outputs:
+          unitPrice: $response.body#/unitPrice
+          unitOfMeasure: $response.body#/unitOfMeasure
+      - stepId: placeOrder
+        operationId: createOrder
+        requestBody:
+          contentType: application/json
+          payload:
+            customerId: $inputs.customerId
+            lines:
+              - itemId: $steps.findItem.outputs.itemId
+                qtyOrdered: $inputs.qtyOrdered
+                unitPrice: $steps.checkPrice.outputs.unitPrice
+                unitOfMeasure: $steps.checkPrice.outputs.unitOfMeasure
+        outputs:
+          orderId: $response.body#/orderId
+      - stepId: confirmOrder
+        operationId: getOrderDetails
+        parameters:
+          - { name: salesOrderId, in: path, value: $steps.placeOrder.outputs.orderId }
+        outputs:
+          status: $response.body#/status
+    outputs:
+      orderId: $steps.placeOrder.outputs.orderId
+      status: $steps.confirmOrder.outputs.status

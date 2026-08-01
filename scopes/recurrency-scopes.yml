@@ -1,0 +1,41 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/recurrency-openapi.yml
+docs: https://recurrency.gitbook.io/recurrency/authentication/getting-an-access-token
+schemes:
+  - name: oauth2-api
+    source: openapi/recurrency-openapi.yml
+    flows:
+      - flow: clientCredentials
+        tokenUrl: https://api.recurrency.com/oauth/token
+    description: >-
+      OAuth 2.0 client-credentials for the e-procurement REST API. POST to the
+      token endpoint with grant_type=client_credentials plus
+      client_id/client_secret to receive a Bearer access token, valid for 7 days
+      (604800 seconds). Send it as `authorization: Bearer {token}`.
+  - name: oauth2-mcp
+    source: well-known/recurrency-oauth-authorization-server.json
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://login.recurrency.ai/authorize
+        tokenUrl: https://login.recurrency.ai/oauth/token
+    description: >-
+      Auth0-backed authorization-code + PKCE (S256) flow securing the hosted MCP
+      server (api.recurrency.com/mcp, protected resource core-api.recurrency.ai).
+scopes:
+  - scope: recurrency:api:tenant
+    description: Tenant-scoped access to the Recurrency e-procurement REST API.
+    flows: [clientCredentials]
+    sources: [openapi/recurrency-openapi.yml]
+  - scope: recurrency:mcp:tenant:read
+    description: Read access to tenant data via the Recurrency MCP server.
+    flows: [authorizationCode]
+    sources: [well-known/recurrency-oauth-authorization-server.json]
+  - scope: recurrency:mcp:tenant:write
+    description: Write access to tenant data via the Recurrency MCP server.
+    flows: [authorizationCode]
+    sources: [well-known/recurrency-oauth-authorization-server.json]
+  - scope: recurrency:mcp:admin
+    description: Administrative access via the Recurrency MCP server.
+    flows: [authorizationCode]
+    sources: [well-known/recurrency-oauth-authorization-server.json]

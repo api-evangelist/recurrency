@@ -1,0 +1,31 @@
+generated: '2026-07-21'
+method: searched
+source: probed live /.well-known/ on Recurrency hosts
+hosts:
+  - host: https://www.recurrency.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: recurrency-security.txt
+  - host: https://api.recurrency.com
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        file: recurrency-oauth-authorization-server.json
+        note: RFC 8414 metadata; advertises MCP scopes and login.recurrency.ai as the auth server.
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        file: recurrency-oauth-protected-resource.json
+        note: RFC 9728; resource=https://core-api.recurrency.ai, authorization_servers=[https://login.recurrency.ai/].
+      - path: /.well-known/security.txt
+        status: 501
+      - path: /.well-known/openid-configuration
+        status: 501
+      - path: /.well-known/api-catalog
+        status: 501
+  - host: https://login.recurrency.ai
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: recurrency-openid-configuration.json
+        note: Auth0-backed OIDC discovery for the Recurrency identity/MCP auth server.
