@@ -81,6 +81,8 @@ apis:
   - type: GettingStarted
     url: https://recurrency.gitbook.io/recurrency/readme
 common:
+- type: Overlay
+  url: overlays/recurrency-openapi-overlay.yaml
 - type: DeveloperPortal
   url: https://recurrency.gitbook.io/recurrency/
 - type: Documentation
