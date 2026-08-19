@@ -1,0 +1,588 @@
+{
+  "item": [
+    {
+      "id": "d9f8a0aa-17f7-4de1-9e7a-9fd95fc6730b",
+      "name": "Orders",
+      "description": {
+        "content": "Create, list and retrieve sales orders and quotes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dc6901c6-28a9-4542-935f-ccd08503f0a7",
+          "name": "List orders and quotes",
+          "request": {
+            "name": "List orders and quotes",
+            "description": {
+              "content": "Retrieve the list of orders/quotes, optionally filtered by customer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "customerId",
+                  "value": "<string>",
+                  "description": "Filter orders by customer identifier."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60897a25-9ef8-46a6-94cf-90bf2e6bccc5",
+              "name": "A list of orders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customerId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orders\": [\n    {\n      \"salesOrderId\": \"string\",\n      \"orderDate\": \"1983-02-18T01:37:02.965Z\",\n      \"dueDate\": \"2014-03-10T10:36:34.641Z\",\n      \"approved\": true,\n      \"status\": \"string\",\n      \"customerPORef\": \"string\",\n      \"customerId\": \"string\",\n      \"customerName\": \"string\"\n    },\n    {\n      \"salesOrderId\": \"string\",\n      \"orderDate\": \"2007-03-09T01:14:04.283Z\",\n      \"dueDate\": \"1998-05-05T15:47:50.832Z\",\n      \"approved\": false,\n      \"status\": \"string\",\n      \"customerPORef\": \"string\",\n      \"customerId\": \"string\",\n      \"customerName\": \"string\"\n    }\n  ],\n  \"totalCount\": 7254.996441489635\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c6532b1-4ea1-4b3d-8fa4-894e1d0c62d4",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customerId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad1b6458-5bbc-423d-97df-697441ab5ce2",
+          "name": "Create an order or quote",
+          "request": {
+            "name": "Create an order or quote",
+            "description": {
+              "content": "Create a new sales order or quote with order details and line items.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"<string>\",\n  \"lines\": [\n    {\n      \"itemId\": \"<string>\",\n      \"qtyOrdered\": \"<string>\",\n      \"unitOfMeasure\": \"<string>\",\n      \"unitPrice\": \"<string>\",\n      \"description\": \"<string>\",\n      \"jobNo\": \"<string>\"\n    },\n    {\n      \"itemId\": \"<string>\",\n      \"qtyOrdered\": \"<string>\",\n      \"unitOfMeasure\": \"<string>\",\n      \"unitPrice\": \"<string>\",\n      \"description\": \"<string>\",\n      \"jobNo\": \"<string>\"\n    }\n  ],\n  \"companyId\": \"<string>\",\n  \"locationId\": \"<string>\",\n  \"poNo\": \"<string>\",\n  \"contactId\": \"<string>\",\n  \"taker\": \"<string>\",\n  \"jobName\": \"<string>\",\n  \"jobNo\": \"<string>\",\n  \"shipToId\": \"<string>\",\n  \"shipToName\": \"<string>\",\n  \"carrierId\": \"<string>\",\n  \"carrierName\": \"<string>\",\n  \"requestedDate\": \"<date>\",\n  \"freightCd\": \"<string>\",\n  \"pickTicketType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "99f80a2d-bbe1-4506-973f-4e44cf047556",
+              "name": "Order created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"<string>\",\n  \"lines\": [\n    {\n      \"itemId\": \"string\",\n      \"qtyOrdered\": \"string\",\n      \"unitOfMeasure\": \"string\",\n      \"unitPrice\": \"string\",\n      \"description\": \"string\",\n      \"jobNo\": \"string\"\n    },\n    {\n      \"itemId\": \"string\",\n      \"qtyOrdered\": \"string\",\n      \"unitOfMeasure\": \"string\",\n      \"unitPrice\": \"string\",\n      \"description\": \"string\",\n      \"jobNo\": \"string\"\n    }\n  ],\n  \"companyId\": \"<string>\",\n  \"locationId\": \"<string>\",\n  \"poNo\": \"<string>\",\n  \"contactId\": \"<string>\",\n  \"taker\": \"<string>\",\n  \"jobName\": \"<string>\",\n  \"jobNo\": \"<string>\",\n  \"shipToId\": \"<string>\",\n  \"shipToName\": \"<string>\",\n  \"carrierId\": \"<string>\",\n  \"carrierName\": \"<string>\",\n  \"requestedDate\": \"<date>\",\n  \"freightCd\": \"<string>\",\n  \"pickTicketType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orderId\": \"string\",\n  \"status\": \"string\",\n  \"details\": {\n    \"key_0\": 4891.94208432816\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35bf295f-ecb6-4f96-aeaf-32414c9d2036",
+              "name": "Validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"<string>\",\n  \"lines\": [\n    {\n      \"itemId\": \"string\",\n      \"qtyOrdered\": \"string\",\n      \"unitOfMeasure\": \"string\",\n      \"unitPrice\": \"string\",\n      \"description\": \"string\",\n      \"jobNo\": \"string\"\n    },\n    {\n      \"itemId\": \"string\",\n      \"qtyOrdered\": \"string\",\n      \"unitOfMeasure\": \"string\",\n      \"unitPrice\": \"string\",\n      \"description\": \"string\",\n      \"jobNo\": \"string\"\n    }\n  ],\n  \"companyId\": \"<string>\",\n  \"locationId\": \"<string>\",\n  \"poNo\": \"<string>\",\n  \"contactId\": \"<string>\",\n  \"taker\": \"<string>\",\n  \"jobName\": \"<string>\",\n  \"jobNo\": \"<string>\",\n  \"shipToId\": \"<string>\",\n  \"shipToName\": \"<string>\",\n  \"carrierId\": \"<string>\",\n  \"carrierName\": \"<string>\",\n  \"requestedDate\": \"<date>\",\n  \"freightCd\": \"<string>\",\n  \"pickTicketType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Invalid request\",\n  \"details\": {\n    \"product_name\": \"product_name is required\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8aaa0a18-da5b-4354-affa-d3f6a40ad54d",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"<string>\",\n  \"lines\": [\n    {\n      \"itemId\": \"string\",\n      \"qtyOrdered\": \"string\",\n      \"unitOfMeasure\": \"string\",\n      \"unitPrice\": \"string\",\n      \"description\": \"string\",\n      \"jobNo\": \"string\"\n    },\n    {\n      \"itemId\": \"string\",\n      \"qtyOrdered\": \"string\",\n      \"unitOfMeasure\": \"string\",\n      \"unitPrice\": \"string\",\n      \"description\": \"string\",\n      \"jobNo\": \"string\"\n    }\n  ],\n  \"companyId\": \"<string>\",\n  \"locationId\": \"<string>\",\n  \"poNo\": \"<string>\",\n  \"contactId\": \"<string>\",\n  \"taker\": \"<string>\",\n  \"jobName\": \"<string>\",\n  \"jobNo\": \"<string>\",\n  \"shipToId\": \"<string>\",\n  \"shipToName\": \"<string>\",\n  \"carrierId\": \"<string>\",\n  \"carrierName\": \"<string>\",\n  \"requestedDate\": \"<date>\",\n  \"freightCd\": \"<string>\",\n  \"pickTicketType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79a30e95-713e-4754-a89e-c8f1410e8677",
+          "name": "Retrieve order details",
+          "request": {
+            "name": "Retrieve order details",
+            "description": {
+              "content": "Retrieve comprehensive details for a single sales order, including line items, addresses and financials.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "order-details",
+                ":salesOrderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "salesOrderId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21dc6259-18ac-4929-a58b-fc2b2c9557cd",
+              "name": "Order details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order-details",
+                    ":salesOrderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "salesOrderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"salesOrderId\": \"string\",\n  \"orderDate\": \"1987-01-09T17:00:35.207Z\",\n  \"dueDate\": \"2008-07-03T16:39:54.689Z\",\n  \"status\": \"string\",\n  \"approved\": false,\n  \"customerId\": \"string\",\n  \"customerName\": \"string\",\n  \"totalPrice\": 9460.505131042015,\n  \"totalGrossMargin\": 2430.172006840483,\n  \"totalGrossMarginPercent\": 1506.3891604150704,\n  \"lines\": [\n    {\n      \"key_0\": 2744\n    },\n    {\n      \"key_0\": 449.32298587843866,\n      \"key_1\": 3553\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28d17f94-6838-4b96-92d7-11a328955635",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order-details",
+                    ":salesOrderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "salesOrderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b9c8b90-3d39-4638-80be-06d4a934454f",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order-details",
+                    ":salesOrderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "salesOrderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Not found\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.recurrency.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "recurrency:api:tenant"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.recurrency.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8ab72fbf-5bc9-495d-acd4-5f9fa570cbf0",
+    "name": "Recurrency E-Procurement Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Recurrency API lets wholesale distributors and B2B suppliers authenticate with Recurrency services, retrieve and filter a supplier's product catalog (items, availability, pricing, locations and groups), upload supplier product catalog data, and create and manage sales orders and quotes. This specification was generated by API Evangelist from Recurrency's published GitBook developer documentation; it is a faithful model of the documented endpoints, not a provider-published OpenAPI.\n\nContact Support:\n Name: Recurrency Support",
+      "type": "text/plain"
+    }
+  }
+}

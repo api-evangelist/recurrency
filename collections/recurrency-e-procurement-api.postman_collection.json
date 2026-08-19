@@ -1,0 +1,1727 @@
+{
+  "item": [
+    {
+      "id": "1593fc1e-1ac2-48e5-b4f6-b4ffd79ba632",
+      "name": "E-Procurement",
+      "description": {
+        "content": "Supplier product catalog retrieval, filtering and upload.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "25e09f85-76ab-4b20-b27d-7796f3db640c",
+          "name": "List available suppliers",
+          "request": {
+            "name": "List available suppliers",
+            "description": {
+              "content": "Retrieve the list of suppliers available to your tenant. The `slug` on each supplier is the identifier used in the item, location, group and price endpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketplace",
+                "suppliers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48ee609c-f25c-48dc-897c-a2e1cb3a852b",
+              "name": "A list of suppliers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "suppliers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"description\": \"string\",\n      \"address\": {\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"description\": \"string\",\n      \"address\": {\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      }\n    }\n  ],\n  \"totalCount\": 848.3539242486816\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d803e16-7f4d-474e-a419-a0fdafbdbedb",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "suppliers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6efe7810-807a-4e3a-872e-9e3ebc297c93",
+          "name": "Retrieve products",
+          "request": {
+            "name": "Retrieve products",
+            "description": {
+              "content": "Retrieve and filter a supplier's product catalog items.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketplace",
+                "suppliers",
+                ":supplierSlug",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchQuery",
+                  "value": "<string>",
+                  "description": "Searches item names/codes."
+                },
+                {
+                  "disabled": false,
+                  "key": "shortCodes",
+                  "value": "<string>",
+                  "description": "Filter by short codes."
+                },
+                {
+                  "disabled": false,
+                  "key": "shortCodes",
+                  "value": "<string>",
+                  "description": "Filter by short codes."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupNames",
+                  "value": "<string>",
+                  "description": "Filter by group names."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupNames",
+                  "value": "<string>",
+                  "description": "Filter by group names."
+                },
+                {
+                  "disabled": false,
+                  "key": "companyNames",
+                  "value": "<string>",
+                  "description": "Filter by company names."
+                },
+                {
+                  "disabled": false,
+                  "key": "companyNames",
+                  "value": "<string>",
+                  "description": "Filter by company names."
+                },
+                {
+                  "disabled": false,
+                  "key": "locationNames",
+                  "value": "<string>",
+                  "description": "Filter by location names."
+                },
+                {
+                  "disabled": false,
+                  "key": "locationNames",
+                  "value": "<string>",
+                  "description": "Filter by location names."
+                },
+                {
+                  "disabled": false,
+                  "key": "minQuantityAvailable",
+                  "value": "<number>",
+                  "description": "Minimum quantity threshold."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDir",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Results per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Pagination offset."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "supplierSlug",
+                  "description": "(Required) The supplier identifier (slug) from the suppliers list."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a824cc49-b347-47b3-a51e-a2486245ab03",
+              "name": "A page of catalog items.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "suppliers",
+                    ":supplierSlug",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchQuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "shortCodes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "shortCodes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "companyNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "companyNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minQuantityAvailable",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierSlug",
+                      "description": "(Required) The supplier identifier (slug) from the suppliers list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"product_name\": \"string\",\n      \"itemId\": \"string\",\n      \"part_number\": \"string\",\n      \"list_price\": 5166.507781166093,\n      \"on_hand\": 2383,\n      \"brand_name\": \"string\",\n      \"supplier_name\": \"string\",\n      \"manufacturer_part_number\": \"string\",\n      \"short_description\": \"string\",\n      \"long_description\": \"string\",\n      \"images\": [\n        {\n          \"image_url\": \"string\",\n          \"image_type\": \"string\",\n          \"default_image\": true\n        },\n        {\n          \"image_url\": \"string\",\n          \"image_type\": \"string\",\n          \"default_image\": true\n        }\n      ],\n      \"attributes\": [\n        {\n          \"attribute_name\": \"string\",\n          \"attribute_value\": \"string\"\n        },\n        {\n          \"attribute_name\": \"string\",\n          \"attribute_value\": \"string\"\n        }\n      ],\n      \"documents\": [\n        {\n          \"document_name\": \"string\",\n          \"document_type\": \"string\",\n          \"category_name\": \"string\"\n        },\n        {\n          \"document_name\": \"string\",\n          \"document_type\": \"string\",\n          \"category_name\": \"string\"\n        }\n      ],\n      \"categories\": [\n        {\n          \"category_code\": \"string\",\n          \"category_name\": \"string\",\n          \"default_category\": true\n        },\n        {\n          \"category_code\": \"string\",\n          \"category_name\": \"string\",\n          \"default_category\": false\n        }\n      ]\n    },\n    {\n      \"product_name\": \"string\",\n      \"itemId\": \"string\",\n      \"part_number\": \"string\",\n      \"list_price\": 193.08180813244368,\n      \"on_hand\": 5635,\n      \"brand_name\": \"string\",\n      \"supplier_name\": \"string\",\n      \"manufacturer_part_number\": \"string\",\n      \"short_description\": \"string\",\n      \"long_description\": \"string\",\n      \"images\": [\n        {\n          \"image_url\": \"string\",\n          \"image_type\": \"string\",\n          \"default_image\": true\n        },\n        {\n          \"image_url\": \"string\",\n          \"image_type\": \"string\",\n          \"default_image\": false\n        }\n      ],\n      \"attributes\": [\n        {\n          \"attribute_name\": \"string\",\n          \"attribute_value\": \"string\"\n        },\n        {\n          \"attribute_name\": \"string\",\n          \"attribute_value\": \"string\"\n        }\n      ],\n      \"documents\": [\n        {\n          \"document_name\": \"string\",\n          \"document_type\": \"string\",\n          \"category_name\": \"string\"\n        },\n        {\n          \"document_name\": \"string\",\n          \"document_type\": \"string\",\n          \"category_name\": \"string\"\n        }\n      ],\n      \"categories\": [\n        {\n          \"category_code\": \"string\",\n          \"category_name\": \"string\",\n          \"default_category\": false\n        },\n        {\n          \"category_code\": \"string\",\n          \"category_name\": \"string\",\n          \"default_category\": false\n        }\n      ]\n    }\n  ],\n  \"totalCount\": 7368.95958476199\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b20ca89e-bcab-4363-9f6c-7a01073ad0b9",
+              "name": "Validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "suppliers",
+                    ":supplierSlug",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchQuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "shortCodes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "shortCodes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "companyNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "companyNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minQuantityAvailable",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierSlug",
+                      "description": "(Required) The supplier identifier (slug) from the suppliers list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Invalid request\",\n  \"details\": {\n    \"product_name\": \"product_name is required\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "143aaed1-34f7-4d03-a450-db4c8bd16b22",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "suppliers",
+                    ":supplierSlug",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchQuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "shortCodes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "shortCodes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "companyNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "companyNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "locationNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minQuantityAvailable",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierSlug",
+                      "description": "(Required) The supplier identifier (slug) from the suppliers list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "feaa89e9-2e31-4971-a1f6-0ad0207fc6c0",
+          "name": "Upload products",
+          "request": {
+            "name": "Upload products",
+            "description": {
+              "content": "Upload a supplier's product catalog items. Accepts up to a maximum of 100 items per request; `product_name` is required on each item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketplace",
+                "suppliers",
+                ":supplierSlug",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "supplierSlug",
+                  "description": "(Required) The supplier identifier (slug) from the suppliers list."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"product_name\": \"<string>\",\n      \"itemId\": \"<string>\",\n      \"part_number\": \"<string>\",\n      \"list_price\": \"<number>\",\n      \"on_hand\": \"<integer>\",\n      \"brand_name\": \"<string>\",\n      \"supplier_name\": \"<string>\",\n      \"manufacturer_part_number\": \"<string>\",\n      \"short_description\": \"<string>\",\n      \"long_description\": \"<string>\",\n      \"images\": [\n        {\n          \"image_url\": \"<string>\",\n          \"image_type\": \"<string>\",\n          \"default_image\": \"<boolean>\"\n        },\n        {\n          \"image_url\": \"<string>\",\n          \"image_type\": \"<string>\",\n          \"default_image\": \"<boolean>\"\n        }\n      ],\n      \"attributes\": [\n        {\n          \"attribute_name\": \"<string>\",\n          \"attribute_value\": \"<string>\"\n        },\n        {\n          \"attribute_name\": \"<string>\",\n          \"attribute_value\": \"<string>\"\n        }\n      ],\n      \"documents\": [\n        {\n          \"document_name\": \"<string>\",\n          \"document_type\": \"<string>\",\n          \"category_name\": \"<string>\"\n        },\n        {\n          \"document_name\": \"<string>\",\n          \"document_type\": \"<string>\",\n          \"category_name\": \"<string>\"\n        }\n      ],\n      \"categories\": [\n        {\n          \"category_code\": \"<string>\",\n          \"category_name\": \"<string>\",\n          \"default_category\": \"<boolean>\"\n        },\n        {\n          \"category_code\": \"<string>\",\n          \"category_name\": \"<string>\",\n          \"default_category\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"product_name\": \"<string>\",\n      \"itemId\": \"<string>\",\n      \"part_number\": \"<string>\",\n      \"list_price\": \"<number>\",\n      \"on_hand\": \"<integer>\",\n      \"brand_name\": \"<string>\",\n      \"supplier_name\": \"<string>\",\n      \"manufacturer_part_number\": \"<string>\",\n      \"short_description\": \"<string>\",\n      \"long_description\": \"<string>\",\n      \"images\": [\n        {\n          \"image_url\": \"<string>\",\n          \"image_type\": \"<string>\",\n          \"default_image\": \"<boolean>\"\n        },\n        {\n          \"image_url\": \"<string>\",\n          \"image_type\": \"<string>\",\n          \"default_image\": \"<boolean>\"\n        }\n      ],\n      \"attributes\": [\n        {\n          \"attribute_name\": \"<string>\",\n          \"attribute_value\": \"<string>\"\n        },\n        {\n          \"attribute_name\": \"<string>\",\n          \"attribute_value\": \"<string>\"\n        }\n      ],\n      \"documents\": [\n        {\n          \"document_name\": \"<string>\",\n          \"document_type\": \"<string>\",\n          \"category_name\": \"<string>\"\n        },\n        {\n          \"document_name\": \"<string>\",\n          \"document_type\": \"<string>\",\n          \"category_name\": \"<string>\"\n        }\n      ],\n      \"categories\": [\n        {\n          \"category_code\": \"<string>\",\n          \"category_name\": \"<string>\",\n          \"default_category\": \"<boolean>\"\n        },\n        {\n          \"category_code\": \"<string>\",\n          \"category_name\": \"<string>\",\n          \"default_category\": \"<boolean>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "053ec201-30cc-456b-84c5-61e730861436",
+              "name": "Items created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "suppliers",
+                    ":supplierSlug",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierSlug",
+                      "description": "(Required) The supplier identifier (slug) from the suppliers list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"product_name\": \"string\",\n      \"itemId\": \"string\",\n      \"part_number\": \"string\",\n      \"list_price\": 5972.553276344552,\n      \"on_hand\": 9107,\n      \"brand_name\": \"string\",\n      \"supplier_name\": \"string\",\n      \"manufacturer_part_number\": \"string\",\n      \"short_description\": \"string\",\n      \"long_description\": \"string\",\n      \"images\": [\n        {\n          \"image_url\": \"string\",\n          \"image_type\": \"string\",\n          \"default_image\": false\n        },\n        {\n          \"image_url\": \"string\",\n          \"image_type\": \"string\",\n          \"default_image\": true\n        }\n      ],\n      \"attributes\": [\n        {\n          \"attribute_name\": \"string\",\n          \"attribute_value\": \"string\"\n        },\n        {\n          \"attribute_name\": \"string\",\n          \"attribute_value\": \"string\"\n        }\n      ],\n      \"documents\": [\n        {\n          \"document_name\": \"string\",\n          \"document_type\": \"string\",\n          \"category_name\": \"string\"\n        },\n        {\n          \"document_name\": \"string\",\n          \"document_type\": \"string\",\n          \"category_name\": \"string\"\n        }\n      ],\n      \"categories\": [\n        {\n          \"category_code\": \"string\",\n          \"category_name\": \"string\",\n          \"default_category\": true\n        },\n        {\n          \"category_code\": \"string\",\n          \"category_name\": \"string\",\n          \"default_category\": true\n        }\n      ]\n    },\n    {\n      \"product_name\": \"string\",\n      \"itemId\": \"string\",\n      \"part_number\": \"string\",\n      \"list_price\": 4503.606972574304,\n      \"on_hand\": 559,\n      \"brand_name\": \"string\",\n      \"supplier_name\": \"string\",\n      \"manufacturer_part_number\": \"string\",\n      \"short_description\": \"string\",\n      \"long_description\": \"string\",\n      \"images\": [\n        {\n          \"image_url\": \"string\",\n          \"image_type\": \"string\",\n          \"default_image\": true\n        },\n        {\n          \"image_url\": \"string\",\n          \"image_type\": \"string\",\n          \"default_image\": false\n        }\n      ],\n      \"attributes\": [\n        {\n          \"attribute_name\": \"string\",\n          \"attribute_value\": \"string\"\n        },\n        {\n          \"attribute_name\": \"string\",\n          \"attribute_value\": \"string\"\n        }\n      ],\n      \"documents\": [\n        {\n          \"document_name\": \"string\",\n          \"document_type\": \"string\",\n          \"category_name\": \"string\"\n        },\n        {\n          \"document_name\": \"string\",\n          \"document_type\": \"string\",\n          \"category_name\": \"string\"\n        }\n      ],\n      \"categories\": [\n        {\n          \"category_code\": \"string\",\n          \"category_name\": \"string\",\n          \"default_category\": true\n        },\n        {\n          \"category_code\": \"string\",\n          \"category_name\": \"string\",\n          \"default_category\": true\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"createdItems\": [\n    {\n      \"itemId\": \"string\",\n      \"product_name\": \"string\"\n    },\n    {\n      \"itemId\": \"string\",\n      \"product_name\": \"string\"\n    }\n  ],\n  \"totalCreated\": 5566.824500068675\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "675f5575-cd1d-40ae-b0c1-1068137d6c09",
+              "name": "Validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "suppliers",
+                    ":supplierSlug",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierSlug",
+                      "description": "(Required) The supplier identifier (slug) from the suppliers list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"product_name\": \"string\",\n      \"itemId\": \"string\",\n      \"part_number\": \"string\",\n      \"list_price\": 5972.553276344552,\n      \"on_hand\": 9107,\n      \"brand_name\": \"string\",\n      \"supplier_name\": \"string\",\n      \"manufacturer_part_number\": \"string\",\n      \"short_description\": \"string\",\n      \"long_description\": \"string\",\n      \"images\": [\n        {\n          \"image_url\": \"string\",\n          \"image_type\": \"string\",\n          \"default_image\": false\n        },\n        {\n          \"image_url\": \"string\",\n          \"image_type\": \"string\",\n          \"default_image\": true\n        }\n      ],\n      \"attributes\": [\n        {\n          \"attribute_name\": \"string\",\n          \"attribute_value\": \"string\"\n        },\n        {\n          \"attribute_name\": \"string\",\n          \"attribute_value\": \"string\"\n        }\n      ],\n      \"documents\": [\n        {\n          \"document_name\": \"string\",\n          \"document_type\": \"string\",\n          \"category_name\": \"string\"\n        },\n        {\n          \"document_name\": \"string\",\n          \"document_type\": \"string\",\n          \"category_name\": \"string\"\n        }\n      ],\n      \"categories\": [\n        {\n          \"category_code\": \"string\",\n          \"category_name\": \"string\",\n          \"default_category\": true\n        },\n        {\n          \"category_code\": \"string\",\n          \"category_name\": \"string\",\n          \"default_category\": true\n        }\n      ]\n    },\n    {\n      \"product_name\": \"string\",\n      \"itemId\": \"string\",\n      \"part_number\": \"string\",\n      \"list_price\": 4503.606972574304,\n      \"on_hand\": 559,\n      \"brand_name\": \"string\",\n      \"supplier_name\": \"string\",\n      \"manufacturer_part_number\": \"string\",\n      \"short_description\": \"string\",\n      \"long_description\": \"string\",\n      \"images\": [\n        {\n          \"image_url\": \"string\",\n          \"image_type\": \"string\",\n          \"default_image\": true\n        },\n        {\n          \"image_url\": \"string\",\n          \"image_type\": \"string\",\n          \"default_image\": false\n        }\n      ],\n      \"attributes\": [\n        {\n          \"attribute_name\": \"string\",\n          \"attribute_value\": \"string\"\n        },\n        {\n          \"attribute_name\": \"string\",\n          \"attribute_value\": \"string\"\n        }\n      ],\n      \"documents\": [\n        {\n          \"document_name\": \"string\",\n          \"document_type\": \"string\",\n          \"category_name\": \"string\"\n        },\n        {\n          \"document_name\": \"string\",\n          \"document_type\": \"string\",\n          \"category_name\": \"string\"\n        }\n      ],\n      \"categories\": [\n        {\n          \"category_code\": \"string\",\n          \"category_name\": \"string\",\n          \"default_category\": true\n        },\n        {\n          \"category_code\": \"string\",\n          \"category_name\": \"string\",\n          \"default_category\": true\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Invalid request\",\n  \"details\": {\n    \"product_name\": \"product_name is required\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2731f786-70a2-4df1-a45c-e49c73d34725",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "suppliers",
+                    ":supplierSlug",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierSlug",
+                      "description": "(Required) The supplier identifier (slug) from the suppliers list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"product_name\": \"string\",\n      \"itemId\": \"string\",\n      \"part_number\": \"string\",\n      \"list_price\": 5972.553276344552,\n      \"on_hand\": 9107,\n      \"brand_name\": \"string\",\n      \"supplier_name\": \"string\",\n      \"manufacturer_part_number\": \"string\",\n      \"short_description\": \"string\",\n      \"long_description\": \"string\",\n      \"images\": [\n        {\n          \"image_url\": \"string\",\n          \"image_type\": \"string\",\n          \"default_image\": false\n        },\n        {\n          \"image_url\": \"string\",\n          \"image_type\": \"string\",\n          \"default_image\": true\n        }\n      ],\n      \"attributes\": [\n        {\n          \"attribute_name\": \"string\",\n          \"attribute_value\": \"string\"\n        },\n        {\n          \"attribute_name\": \"string\",\n          \"attribute_value\": \"string\"\n        }\n      ],\n      \"documents\": [\n        {\n          \"document_name\": \"string\",\n          \"document_type\": \"string\",\n          \"category_name\": \"string\"\n        },\n        {\n          \"document_name\": \"string\",\n          \"document_type\": \"string\",\n          \"category_name\": \"string\"\n        }\n      ],\n      \"categories\": [\n        {\n          \"category_code\": \"string\",\n          \"category_name\": \"string\",\n          \"default_category\": true\n        },\n        {\n          \"category_code\": \"string\",\n          \"category_name\": \"string\",\n          \"default_category\": true\n        }\n      ]\n    },\n    {\n      \"product_name\": \"string\",\n      \"itemId\": \"string\",\n      \"part_number\": \"string\",\n      \"list_price\": 4503.606972574304,\n      \"on_hand\": 559,\n      \"brand_name\": \"string\",\n      \"supplier_name\": \"string\",\n      \"manufacturer_part_number\": \"string\",\n      \"short_description\": \"string\",\n      \"long_description\": \"string\",\n      \"images\": [\n        {\n          \"image_url\": \"string\",\n          \"image_type\": \"string\",\n          \"default_image\": true\n        },\n        {\n          \"image_url\": \"string\",\n          \"image_type\": \"string\",\n          \"default_image\": false\n        }\n      ],\n      \"attributes\": [\n        {\n          \"attribute_name\": \"string\",\n          \"attribute_value\": \"string\"\n        },\n        {\n          \"attribute_name\": \"string\",\n          \"attribute_value\": \"string\"\n        }\n      ],\n      \"documents\": [\n        {\n          \"document_name\": \"string\",\n          \"document_type\": \"string\",\n          \"category_name\": \"string\"\n        },\n        {\n          \"document_name\": \"string\",\n          \"document_type\": \"string\",\n          \"category_name\": \"string\"\n        }\n      ],\n      \"categories\": [\n        {\n          \"category_code\": \"string\",\n          \"category_name\": \"string\",\n          \"default_category\": true\n        },\n        {\n          \"category_code\": \"string\",\n          \"category_name\": \"string\",\n          \"default_category\": true\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0161192f-706e-4484-a9a3-55e495e0962e",
+          "name": "Retrieve product locations",
+          "request": {
+            "name": "Retrieve product locations",
+            "description": {
+              "content": "Retrieve and filter the locations a supplier stocks items at.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketplace",
+                "suppliers",
+                ":supplierSlug",
+                "item-locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchQuery",
+                  "value": "<string>",
+                  "description": "Searches locations by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDir",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "supplierSlug",
+                  "description": "(Required) The supplier identifier (slug) from the suppliers list."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "826aa735-8f20-451c-b267-483c585c268b",
+              "name": "A page of locations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "suppliers",
+                    ":supplierSlug",
+                    "item-locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchQuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierSlug",
+                      "description": "(Required) The supplier identifier (slug) from the suppliers list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"locationId\": \"string\",\n      \"locationName\": \"string\"\n    },\n    {\n      \"locationId\": \"string\",\n      \"locationName\": \"string\"\n    }\n  ],\n  \"totalCount\": 6903.777996436444\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e49e6cc4-3ff6-48e4-a9d1-a9eece61a2e7",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "suppliers",
+                    ":supplierSlug",
+                    "item-locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchQuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierSlug",
+                      "description": "(Required) The supplier identifier (slug) from the suppliers list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "36258c43-f3fe-4548-aec0-a40eb168431d",
+          "name": "Retrieve product catalogs (item groups)",
+          "request": {
+            "name": "Retrieve product catalogs (item groups)",
+            "description": {
+              "content": "Retrieve and filter a supplier's item groups / catalogs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketplace",
+                "suppliers",
+                ":supplierSlug",
+                "item-groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchQuery",
+                  "value": "<string>",
+                  "description": "Filter by item group name."
+                },
+                {
+                  "disabled": false,
+                  "key": "companyNames",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "companyNames",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDir",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "supplierSlug",
+                  "description": "(Required) The supplier identifier (slug) from the suppliers list."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26a001fe-5477-4f8f-bf25-a249cfea6ac5",
+              "name": "A page of item groups.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "suppliers",
+                    ":supplierSlug",
+                    "item-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchQuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "companyNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "companyNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierSlug",
+                      "description": "(Required) The supplier identifier (slug) from the suppliers list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"itemGroupId\": \"string\",\n      \"itemGroupName\": \"string\",\n      \"companyId\": \"string\",\n      \"companyName\": \"string\"\n    },\n    {\n      \"itemGroupId\": \"string\",\n      \"itemGroupName\": \"string\",\n      \"companyId\": \"string\",\n      \"companyName\": \"string\"\n    }\n  ],\n  \"totalCount\": 4017.3040210135637\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b950f0a-844d-4ac3-8c2f-c99e14e7b790",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "suppliers",
+                    ":supplierSlug",
+                    "item-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchQuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "companyNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "companyNames",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierSlug",
+                      "description": "(Required) The supplier identifier (slug) from the suppliers list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb9b88e9-2fa5-4fba-b516-9989b741b04e",
+          "name": "Retrieve product price and availability",
+          "request": {
+            "name": "Retrieve product price and availability",
+            "description": {
+              "content": "Retrieve availability and pricing for a specific item at a specified sales/source location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "marketplace",
+                "suppliers",
+                ":supplierSlug",
+                "item-price"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "itemId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "salesLocId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sourceLocId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "companyId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "customerId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "supplierSlug",
+                  "description": "(Required) The supplier identifier (slug) from the suppliers list."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "24c61747-da51-4af6-a2c3-ba1d313fac06",
+              "name": "Item price and availability.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "suppliers",
+                    ":supplierSlug",
+                    "item-price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "itemId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "salesLocId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceLocId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "companyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierSlug",
+                      "description": "(Required) The supplier identifier (slug) from the suppliers list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"itemId\": \"string\",\n  \"companyId\": \"string\",\n  \"locationId\": \"string\",\n  \"locationName\": \"string\",\n  \"quantityAvailable\": 1369.810003142693,\n  \"quantityOnHand\": 4940.397976372339,\n  \"quantityAllocated\": 6459.444841585476,\n  \"quantityBackordered\": 7254.367586131022,\n  \"quantityInProcess\": 331.1541746894098,\n  \"quantityInTransit\": 8654.280903893328,\n  \"unitOfMeasure\": \"string\",\n  \"unitPrice\": 431.4131643737118\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3dc2d7d-99ae-419d-9984-051ac9e4e9ac",
+              "name": "Validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "suppliers",
+                    ":supplierSlug",
+                    "item-price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "itemId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "salesLocId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceLocId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "companyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierSlug",
+                      "description": "(Required) The supplier identifier (slug) from the suppliers list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Invalid request\",\n  \"details\": {\n    \"product_name\": \"product_name is required\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3fcc7a21-e8e1-48e0-835c-19bc4712cdcd",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "suppliers",
+                    ":supplierSlug",
+                    "item-price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "itemId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "salesLocId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceLocId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "companyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierSlug",
+                      "description": "(Required) The supplier identifier (slug) from the suppliers list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47bc163a-b204-44fc-b593-ca985bc729e4",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "marketplace",
+                    "suppliers",
+                    ":supplierSlug",
+                    "item-price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "itemId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "salesLocId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sourceLocId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "companyId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierSlug",
+                      "description": "(Required) The supplier identifier (slug) from the suppliers list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Not found\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.recurrency.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "recurrency:api:tenant"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.recurrency.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bfbf27c7-9462-4179-ad0d-59828992dfaf",
+    "name": "Recurrency E-Procurement API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Recurrency API lets wholesale distributors and B2B suppliers authenticate with Recurrency services, retrieve and filter a supplier's product catalog (items, availability, pricing, locations and groups), upload supplier product catalog data, and create and manage sales orders and quotes. This specification was generated by API Evangelist from Recurrency's published GitBook developer documentation; it is a faithful model of the documented endpoints, not a provider-published OpenAPI.\n\nContact Support:\n Name: Recurrency Support",
+      "type": "text/plain"
+    }
+  }
+}

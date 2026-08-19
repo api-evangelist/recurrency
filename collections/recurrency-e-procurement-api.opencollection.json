@@ -1,0 +1,279 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Recurrency E-Procurement API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.recurrency.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "E-Procurement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List available suppliers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.recurrency.com/marketplace/suppliers"
+          },
+          "docs": "Retrieve the list of suppliers available to your tenant. The `slug` on each supplier is the identifier used in the item, location, group and price endpoints."
+        },
+        {
+          "info": {
+            "name": "Retrieve products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.recurrency.com/marketplace/suppliers/:supplierSlug/items",
+            "params": [
+              {
+                "name": "supplierSlug",
+                "value": "",
+                "type": "path",
+                "description": "The supplier identifier (slug) from the suppliers list."
+              },
+              {
+                "name": "searchQuery",
+                "value": "",
+                "type": "query",
+                "description": "Searches item names/codes."
+              },
+              {
+                "name": "shortCodes",
+                "value": "",
+                "type": "query",
+                "description": "Filter by short codes."
+              },
+              {
+                "name": "groupNames",
+                "value": "",
+                "type": "query",
+                "description": "Filter by group names."
+              },
+              {
+                "name": "companyNames",
+                "value": "",
+                "type": "query",
+                "description": "Filter by company names."
+              },
+              {
+                "name": "locationNames",
+                "value": "",
+                "type": "query",
+                "description": "Filter by location names."
+              },
+              {
+                "name": "minQuantityAvailable",
+                "value": "",
+                "type": "query",
+                "description": "Minimum quantity threshold."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Results per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset."
+              }
+            ]
+          },
+          "docs": "Retrieve and filter a supplier's product catalog items."
+        },
+        {
+          "info": {
+            "name": "Upload products",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.recurrency.com/marketplace/suppliers/:supplierSlug/items",
+            "params": [
+              {
+                "name": "supplierSlug",
+                "value": "",
+                "type": "path",
+                "description": "The supplier identifier (slug) from the suppliers list."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload a supplier's product catalog items. Accepts up to a maximum of 100 items per request; `product_name` is required on each item."
+        },
+        {
+          "info": {
+            "name": "Retrieve product locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.recurrency.com/marketplace/suppliers/:supplierSlug/item-locations",
+            "params": [
+              {
+                "name": "supplierSlug",
+                "value": "",
+                "type": "path",
+                "description": "The supplier identifier (slug) from the suppliers list."
+              },
+              {
+                "name": "searchQuery",
+                "value": "",
+                "type": "query",
+                "description": "Searches locations by name."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve and filter the locations a supplier stocks items at."
+        },
+        {
+          "info": {
+            "name": "Retrieve product catalogs (item groups)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.recurrency.com/marketplace/suppliers/:supplierSlug/item-groups",
+            "params": [
+              {
+                "name": "supplierSlug",
+                "value": "",
+                "type": "path",
+                "description": "The supplier identifier (slug) from the suppliers list."
+              },
+              {
+                "name": "searchQuery",
+                "value": "",
+                "type": "query",
+                "description": "Filter by item group name."
+              },
+              {
+                "name": "companyNames",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve and filter a supplier's item groups / catalogs."
+        },
+        {
+          "info": {
+            "name": "Retrieve product price and availability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.recurrency.com/marketplace/suppliers/:supplierSlug/item-price",
+            "params": [
+              {
+                "name": "supplierSlug",
+                "value": "",
+                "type": "path",
+                "description": "The supplier identifier (slug) from the suppliers list."
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "salesLocId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sourceLocId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve availability and pricing for a specific item at a specified sales/source location."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
