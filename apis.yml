@@ -39,6 +39,15 @@ tags:
 - ERP
 - Distribution
 - Wholesale
+- eProcurement
+- Supply Chain
+- Order
+tags_raw:
+- Company
+- Ai Ml
+- ERP
+- Distribution
+- Wholesale
 - E-Procurement
 - Supply Chain
 - Orders
@@ -54,6 +63,8 @@ apis:
   humanURL: https://recurrency.gitbook.io/recurrency/
   baseURL: https://api.recurrency.com
   tags:
+  - eProcurement
+  tags_raw:
   - E-Procurement
   properties:
   - type: OpenAPI
@@ -70,6 +81,8 @@ apis:
   humanURL: https://recurrency.gitbook.io/recurrency/
   baseURL: https://api.recurrency.com
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
