@@ -11,6 +11,18 @@ description: >-
   and managing sales orders and quotes. It also operates a hosted, OAuth-secured
   MCP server for agent access. Backed by Bessemer Venture Partners.
 url: https://raw.githubusercontent.com/api-evangelist/recurrency/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
