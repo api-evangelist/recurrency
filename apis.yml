@@ -51,7 +51,7 @@ tags:
 - ERP
 - Distribution
 - Wholesale
-- E-Procurement
+- eProcurement
 - Supply Chain
 - Order
 tags_raw:
@@ -75,7 +75,7 @@ apis:
   humanURL: https://recurrency.gitbook.io/recurrency/
   baseURL: https://api.recurrency.com
   tags:
-  - E-Procurement
+  - eProcurement
   tags_raw:
   - E-Procurement
   properties:
