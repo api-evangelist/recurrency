@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Recurrency E-Procurement Orders API
+  title: Recurrency Orders API
   version: '1.0'
   x-apievangelist-generated: '2026-07-21'
   x-apievangelist-method: generated
@@ -92,6 +92,15 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    OrderList:
+      type: object
+      properties:
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderSummary'
+        totalCount:
+          type: number
     OrderCreateRequest:
       type: object
       properties:
@@ -133,15 +142,6 @@ components:
       required:
       - customerId
       - lines
-    OrderList:
-      type: object
-      properties:
-        orders:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderSummary'
-        totalCount:
-          type: number
     OrderLineInput:
       type: object
       properties:
@@ -157,6 +157,19 @@ components:
           type: string
         jobNo:
           type: string
+    Error:
+      type: object
+      description: Standard Recurrency error envelope.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        details:
+          type: object
+          additionalProperties: true
+          description: Field-level error details keyed by field path.
+      required:
+      - message
     OrderDetails:
       type: object
       description: Comprehensive order record with metadata, addresses, shipping, financials and line items.
@@ -188,19 +201,6 @@ components:
           items:
             type: object
             additionalProperties: true
-    Error:
-      type: object
-      description: Standard Recurrency error envelope.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        details:
-          type: object
-          additionalProperties: true
-          description: Field-level error details keyed by field path.
-      required:
-      - message
     OrderCreateResult:
       type: object
       properties:
@@ -233,16 +233,6 @@ components:
         customerName:
           type: string
   responses:
-    BadRequest:
-      description: Validation error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            message: Invalid request
-            details:
-              product_name: product_name is required
     Unauthorized:
       description: Missing or invalid access token.
       content:
@@ -261,6 +251,16 @@ components:
           example:
             message: Not found
             details: {}
+    BadRequest:
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: Invalid request
+            details:
+              product_name: product_name is required
   securitySchemes:
     oauth2:
       type: oauth2

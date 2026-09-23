@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Recurrency E-Procurement API
+  title: Recurrency E Procurement API
   version: '1.0'
   x-apievangelist-generated: '2026-07-21'
   x-apievangelist-method: generated
@@ -297,23 +297,15 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    SupplierSlug:
+      name: supplierSlug
+      in: path
+      required: true
+      description: The supplier identifier (slug) from the suppliers list.
+      schema:
+        type: string
   schemas:
-    ItemUploadResult:
-      type: object
-      properties:
-        message:
-          type: string
-        createdItems:
-          type: array
-          items:
-            type: object
-            properties:
-              itemId:
-                type: string
-              product_name:
-                type: string
-        totalCreated:
-          type: number
     ItemGroupList:
       type: object
       properties:
@@ -323,25 +315,6 @@ components:
             $ref: '#/components/schemas/ItemGroup'
         totalCount:
           type: number
-    Location:
-      type: object
-      properties:
-        locationId:
-          type: string
-        locationName:
-          type: string
-    Supplier:
-      type: object
-      properties:
-        name:
-          type: string
-        slug:
-          type: string
-          description: Identifier used in item/location/group/price endpoints.
-        description:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
     Address:
       type: object
       properties:
@@ -359,6 +332,15 @@ components:
           type: string
         country:
           type: string
+    SupplierList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Supplier'
+        totalCount:
+          type: number
     Item:
       type: object
       properties:
@@ -426,13 +408,48 @@ components:
                 type: boolean
       required:
       - product_name
-    SupplierList:
+    Location:
+      type: object
+      properties:
+        locationId:
+          type: string
+        locationName:
+          type: string
+    ItemUploadResult:
+      type: object
+      properties:
+        message:
+          type: string
+        createdItems:
+          type: array
+          items:
+            type: object
+            properties:
+              itemId:
+                type: string
+              product_name:
+                type: string
+        totalCreated:
+          type: number
+    Supplier:
+      type: object
+      properties:
+        name:
+          type: string
+        slug:
+          type: string
+          description: Identifier used in item/location/group/price endpoints.
+        description:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+    LocationList:
       type: object
       properties:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/Supplier'
+            $ref: '#/components/schemas/Location'
         totalCount:
           type: number
     ItemGroup:
@@ -446,6 +463,38 @@ components:
           type: string
         companyName:
           type: string
+    Error:
+      type: object
+      description: Standard Recurrency error envelope.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        details:
+          type: object
+          additionalProperties: true
+          description: Field-level error details keyed by field path.
+      required:
+      - message
+    ItemUploadRequest:
+      type: object
+      properties:
+        items:
+          type: array
+          maxItems: 100
+          items:
+            $ref: '#/components/schemas/Item'
+      required:
+      - items
+    ItemList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+        totalCount:
+          type: number
     ItemPrice:
       type: object
       properties:
@@ -473,58 +522,7 @@ components:
           type: string
         unitPrice:
           type: number
-    ItemList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Item'
-        totalCount:
-          type: number
-    LocationList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Location'
-        totalCount:
-          type: number
-    Error:
-      type: object
-      description: Standard Recurrency error envelope.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        details:
-          type: object
-          additionalProperties: true
-          description: Field-level error details keyed by field path.
-      required:
-      - message
-    ItemUploadRequest:
-      type: object
-      properties:
-        items:
-          type: array
-          maxItems: 100
-          items:
-            $ref: '#/components/schemas/Item'
-      required:
-      - items
   responses:
-    BadRequest:
-      description: Validation error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            message: Invalid request
-            details:
-              product_name: product_name is required
     Unauthorized:
       description: Missing or invalid access token.
       content:
@@ -543,14 +541,16 @@ components:
           example:
             message: Not found
             details: {}
-  parameters:
-    SupplierSlug:
-      name: supplierSlug
-      in: path
-      required: true
-      description: The supplier identifier (slug) from the suppliers list.
-      schema:
-        type: string
+    BadRequest:
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: Invalid request
+            details:
+              product_name: product_name is required
   securitySchemes:
     oauth2:
       type: oauth2
