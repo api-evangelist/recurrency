@@ -297,15 +297,18 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    SupplierSlug:
-      name: supplierSlug
-      in: path
-      required: true
-      description: The supplier identifier (slug) from the suppliers list.
-      schema:
-        type: string
   schemas:
+    ItemGroup:
+      type: object
+      properties:
+        itemGroupId:
+          type: string
+        itemGroupName:
+          type: string
+        companyId:
+          type: string
+        companyName:
+          type: string
     ItemGroupList:
       type: object
       properties:
@@ -315,32 +318,37 @@ components:
             $ref: '#/components/schemas/ItemGroup'
         totalCount:
           type: number
-    Address:
+    ItemUploadRequest:
       type: object
       properties:
-        line1:
-          type: string
-        line2:
-          type:
-          - string
-          - 'null'
-        city:
-          type: string
-        state:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
-    SupplierList:
+        items:
+          type: array
+          maxItems: 100
+          items:
+            $ref: '#/components/schemas/Item'
+      required:
+      - items
+    ItemList:
       type: object
       properties:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/Supplier'
+            $ref: '#/components/schemas/Item'
         totalCount:
           type: number
+    Supplier:
+      type: object
+      properties:
+        name:
+          type: string
+        slug:
+          type: string
+          description: Identifier used in item/location/group/price endpoints.
+        description:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
     Item:
       type: object
       properties:
@@ -408,13 +416,41 @@ components:
                 type: boolean
       required:
       - product_name
-    Location:
+    SupplierList:
       type: object
       properties:
-        locationId:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Supplier'
+        totalCount:
+          type: number
+    Address:
+      type: object
+      properties:
+        line1:
           type: string
-        locationName:
+        line2:
+          type:
+          - string
+          - 'null'
+        city:
           type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+    LocationList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Location'
+        totalCount:
+          type: number
     ItemUploadResult:
       type: object
       properties:
@@ -431,38 +467,6 @@ components:
                 type: string
         totalCreated:
           type: number
-    Supplier:
-      type: object
-      properties:
-        name:
-          type: string
-        slug:
-          type: string
-          description: Identifier used in item/location/group/price endpoints.
-        description:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
-    LocationList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Location'
-        totalCount:
-          type: number
-    ItemGroup:
-      type: object
-      properties:
-        itemGroupId:
-          type: string
-        itemGroupName:
-          type: string
-        companyId:
-          type: string
-        companyName:
-          type: string
     Error:
       type: object
       description: Standard Recurrency error envelope.
@@ -476,25 +480,13 @@ components:
           description: Field-level error details keyed by field path.
       required:
       - message
-    ItemUploadRequest:
+    Location:
       type: object
       properties:
-        items:
-          type: array
-          maxItems: 100
-          items:
-            $ref: '#/components/schemas/Item'
-      required:
-      - items
-    ItemList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Item'
-        totalCount:
-          type: number
+        locationId:
+          type: string
+        locationName:
+          type: string
     ItemPrice:
       type: object
       properties:
@@ -532,15 +524,6 @@ components:
           example:
             message: Unauthorized
             details: {}
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            message: Not found
-            details: {}
     BadRequest:
       description: Validation error.
       content:
@@ -551,6 +534,23 @@ components:
             message: Invalid request
             details:
               product_name: product_name is required
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: Not found
+            details: {}
+  parameters:
+    SupplierSlug:
+      name: supplierSlug
+      in: path
+      required: true
+      description: The supplier identifier (slug) from the suppliers list.
+      schema:
+        type: string
   securitySchemes:
     oauth2:
       type: oauth2
