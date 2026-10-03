@@ -91,35 +91,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid access token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            message: Unauthorized
-            details: {}
-    BadRequest:
-      description: Validation error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            message: Invalid request
-            details:
-              product_name: product_name is required
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            message: Not found
-            details: {}
   schemas:
     OrderList:
       type: object
@@ -130,16 +101,86 @@ components:
             $ref: '#/components/schemas/OrderSummary'
         totalCount:
           type: number
-    OrderCreateResult:
+    OrderLineInput:
       type: object
       properties:
-        orderId:
+        itemId:
           type: string
+        qtyOrdered:
+          type: string
+        unitOfMeasure:
+          type: string
+        unitPrice:
+          type: string
+        description:
+          type: string
+        jobNo:
+          type: string
+    OrderDetails:
+      type: object
+      description: Comprehensive order record with metadata, addresses, shipping, financials and line items.
+      properties:
+        salesOrderId:
+          type: string
+        orderDate:
+          type: string
+          format: date-time
+        dueDate:
+          type: string
+          format: date-time
         status:
           type: string
+        approved:
+          type: boolean
+        customerId:
+          type: string
+        customerName:
+          type: string
+        totalPrice:
+          type: number
+        totalGrossMargin:
+          type: number
+        totalGrossMarginPercent:
+          type: number
+        lines:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    Error:
+      type: object
+      description: Standard Recurrency error envelope.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
         details:
           type: object
           additionalProperties: true
+          description: Field-level error details keyed by field path.
+      required:
+      - message
+    OrderSummary:
+      type: object
+      properties:
+        salesOrderId:
+          type: string
+        orderDate:
+          type: string
+          format: date-time
+        dueDate:
+          type: string
+          format: date-time
+        approved:
+          type: boolean
+        status:
+          type: string
+        customerPORef:
+          type: string
+        customerId:
+          type: string
+        customerName:
+          type: string
     OrderCreateRequest:
       type: object
       properties:
@@ -181,86 +222,45 @@ components:
       required:
       - customerId
       - lines
-    OrderDetails:
+    OrderCreateResult:
       type: object
-      description: Comprehensive order record with metadata, addresses, shipping, financials and line items.
       properties:
-        salesOrderId:
+        orderId:
           type: string
-        orderDate:
-          type: string
-          format: date-time
-        dueDate:
-          type: string
-          format: date-time
         status:
           type: string
-        approved:
-          type: boolean
-        customerId:
-          type: string
-        customerName:
-          type: string
-        totalPrice:
-          type: number
-        totalGrossMargin:
-          type: number
-        totalGrossMarginPercent:
-          type: number
-        lines:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
-    OrderSummary:
-      type: object
-      properties:
-        salesOrderId:
-          type: string
-        orderDate:
-          type: string
-          format: date-time
-        dueDate:
-          type: string
-          format: date-time
-        approved:
-          type: boolean
-        status:
-          type: string
-        customerPORef:
-          type: string
-        customerId:
-          type: string
-        customerName:
-          type: string
-    Error:
-      type: object
-      description: Standard Recurrency error envelope.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
         details:
           type: object
           additionalProperties: true
-          description: Field-level error details keyed by field path.
-      required:
-      - message
-    OrderLineInput:
-      type: object
-      properties:
-        itemId:
-          type: string
-        qtyOrdered:
-          type: string
-        unitOfMeasure:
-          type: string
-        unitPrice:
-          type: string
-        description:
-          type: string
-        jobNo:
-          type: string
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: Not found
+            details: {}
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: Unauthorized
+            details: {}
+    BadRequest:
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: Invalid request
+            details:
+              product_name: product_name is required
   securitySchemes:
     oauth2:
       type: oauth2

@@ -298,17 +298,22 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ItemGroup:
+    ItemUploadResult:
       type: object
       properties:
-        itemGroupId:
+        message:
           type: string
-        itemGroupName:
-          type: string
-        companyId:
-          type: string
-        companyName:
-          type: string
+        createdItems:
+          type: array
+          items:
+            type: object
+            properties:
+              itemId:
+                type: string
+              product_name:
+                type: string
+        totalCreated:
+          type: number
     ItemGroupList:
       type: object
       properties:
@@ -328,27 +333,24 @@ components:
             $ref: '#/components/schemas/Item'
       required:
       - items
-    ItemList:
+    SupplierList:
       type: object
       properties:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/Item'
+            $ref: '#/components/schemas/Supplier'
         totalCount:
           type: number
-    Supplier:
+    LocationList:
       type: object
       properties:
-        name:
-          type: string
-        slug:
-          type: string
-          description: Identifier used in item/location/group/price endpoints.
-        description:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Location'
+        totalCount:
+          type: number
     Item:
       type: object
       properties:
@@ -416,57 +418,6 @@ components:
                 type: boolean
       required:
       - product_name
-    SupplierList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Supplier'
-        totalCount:
-          type: number
-    Address:
-      type: object
-      properties:
-        line1:
-          type: string
-        line2:
-          type:
-          - string
-          - 'null'
-        city:
-          type: string
-        state:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
-    LocationList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Location'
-        totalCount:
-          type: number
-    ItemUploadResult:
-      type: object
-      properties:
-        message:
-          type: string
-        createdItems:
-          type: array
-          items:
-            type: object
-            properties:
-              itemId:
-                type: string
-              product_name:
-                type: string
-        totalCreated:
-          type: number
     Error:
       type: object
       description: Standard Recurrency error envelope.
@@ -480,13 +431,6 @@ components:
           description: Field-level error details keyed by field path.
       required:
       - message
-    Location:
-      type: object
-      properties:
-        locationId:
-          type: string
-        locationName:
-          type: string
     ItemPrice:
       type: object
       properties:
@@ -514,7 +458,72 @@ components:
           type: string
         unitPrice:
           type: number
+    ItemList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+        totalCount:
+          type: number
+    Address:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type:
+          - string
+          - 'null'
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+    Location:
+      type: object
+      properties:
+        locationId:
+          type: string
+        locationName:
+          type: string
+    ItemGroup:
+      type: object
+      properties:
+        itemGroupId:
+          type: string
+        itemGroupName:
+          type: string
+        companyId:
+          type: string
+        companyName:
+          type: string
+    Supplier:
+      type: object
+      properties:
+        name:
+          type: string
+        slug:
+          type: string
+          description: Identifier used in item/location/group/price endpoints.
+        description:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
   responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: Not found
+            details: {}
     Unauthorized:
       description: Missing or invalid access token.
       content:
@@ -534,15 +543,6 @@ components:
             message: Invalid request
             details:
               product_name: product_name is required
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            message: Not found
-            details: {}
   parameters:
     SupplierSlug:
       name: supplierSlug
