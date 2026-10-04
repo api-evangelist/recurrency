@@ -92,6 +92,91 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    OrderSummary:
+      type: object
+      properties:
+        salesOrderId:
+          type: string
+        orderDate:
+          type: string
+          format: date-time
+        dueDate:
+          type: string
+          format: date-time
+        approved:
+          type: boolean
+        status:
+          type: string
+        customerPORef:
+          type: string
+        customerId:
+          type: string
+        customerName:
+          type: string
+    Error:
+      type: object
+      description: Standard Recurrency error envelope.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        details:
+          type: object
+          additionalProperties: true
+          description: Field-level error details keyed by field path.
+      required:
+      - message
+    OrderCreateResult:
+      type: object
+      properties:
+        orderId:
+          type: string
+        status:
+          type: string
+        details:
+          type: object
+          additionalProperties: true
+    OrderCreateRequest:
+      type: object
+      properties:
+        customerId:
+          type: string
+        companyId:
+          type: string
+        locationId:
+          type: string
+        poNo:
+          type: string
+        contactId:
+          type: string
+        taker:
+          type: string
+        jobName:
+          type: string
+        jobNo:
+          type: string
+        shipToId:
+          type: string
+        shipToName:
+          type: string
+        carrierId:
+          type: string
+        carrierName:
+          type: string
+        requestedDate:
+          type: string
+          format: date
+        freightCd:
+          type: string
+        pickTicketType:
+          type: string
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderLineInput'
+      required:
+      - customerId
+      - lines
     OrderList:
       type: object
       properties:
@@ -147,110 +232,7 @@ components:
           items:
             type: object
             additionalProperties: true
-    Error:
-      type: object
-      description: Standard Recurrency error envelope.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        details:
-          type: object
-          additionalProperties: true
-          description: Field-level error details keyed by field path.
-      required:
-      - message
-    OrderSummary:
-      type: object
-      properties:
-        salesOrderId:
-          type: string
-        orderDate:
-          type: string
-          format: date-time
-        dueDate:
-          type: string
-          format: date-time
-        approved:
-          type: boolean
-        status:
-          type: string
-        customerPORef:
-          type: string
-        customerId:
-          type: string
-        customerName:
-          type: string
-    OrderCreateRequest:
-      type: object
-      properties:
-        customerId:
-          type: string
-        companyId:
-          type: string
-        locationId:
-          type: string
-        poNo:
-          type: string
-        contactId:
-          type: string
-        taker:
-          type: string
-        jobName:
-          type: string
-        jobNo:
-          type: string
-        shipToId:
-          type: string
-        shipToName:
-          type: string
-        carrierId:
-          type: string
-        carrierName:
-          type: string
-        requestedDate:
-          type: string
-          format: date
-        freightCd:
-          type: string
-        pickTicketType:
-          type: string
-        lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderLineInput'
-      required:
-      - customerId
-      - lines
-    OrderCreateResult:
-      type: object
-      properties:
-        orderId:
-          type: string
-        status:
-          type: string
-        details:
-          type: object
-          additionalProperties: true
   responses:
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            message: Not found
-            details: {}
-    Unauthorized:
-      description: Missing or invalid access token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            message: Unauthorized
-            details: {}
     BadRequest:
       description: Validation error.
       content:
@@ -261,6 +243,24 @@ components:
             message: Invalid request
             details:
               product_name: product_name is required
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: Unauthorized
+            details: {}
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            message: Not found
+            details: {}
   securitySchemes:
     oauth2:
       type: oauth2
