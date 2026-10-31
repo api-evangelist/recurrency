@@ -64,6 +64,126 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Recurrency is a company surfaced as a portfolio company of bessemer-venture-partners and added to the API Evangelist network as a stub for enrichment. Sector: ai-ml. This profile is a lead awaiting the enrichment pipeline.
+Recurrency is an AI-powered ERP automation platform for wholesale distributors and B2B suppliers, sitting on top of distribution ERPs to automate and optimize purchasing and sales — forecasting, pricing, reorders and product recommendations across sales, purchasing and operations workflows. Recurrency exposes a public e-procurement REST API (documented on GitBook) for authenticating, retrieving and filtering a supplier's product catalog (items, availability, pricing, locations, groups), uploading catalog data, and creating and managing sales orders and quotes. It also operates a hosted, OAuth-secured MCP server for agent access. Backed by Bessemer Venture Partners.
 
-Backed by: bessemer-venture-partners — https://www.recurrency.com/
+**Areas:** Company · Artificial Intelligence · ERP · Distribution · Wholesale · eProcurement · Supply Chain · Order
+
+## Recurrency on APIs.io
+
+Everything profiled for Recurrency is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/recurrency/](https://apis.io/providers/recurrency/)** — or go straight to one of the APIs or properties below.
+
+### APIs (2)
+
+- [Recurrency E-Procurement API](https://apis.io/apis/recurrency/recurrency-e-procurement-api/) — Supplier product catalog retrieval, filtering and upload.
+- [Recurrency Orders API](https://apis.io/apis/recurrency/recurrency-orders-api/) — Create, list and retrieve sales orders and quotes.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Arazzo workflows (1)
+
+Multi-step workflows that chain operations into a business task.
+
+- [Recurrency procure-to-pay](https://apis.io/arazzos/recurrency/recurrency-procure-to-pay/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [recurrency](https://apis.io/servers/recurrency/recurrency/)
+
+#### Collections (2)
+
+Postman and Open Collection request collections.
+
+- [Recurrency E-Procurement API](https://apis.io/collections/recurrency/open-recurrency-e-procurement-api/)
+- [Recurrency E-Procurement Orders API](https://apis.io/collections/recurrency/open-recurrency-orders-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Recurrency Openapi Overlay](https://apis.io/overlays/recurrency/recurrency-openapi-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Recurrency Authentication](https://apis.io/security/recurrency/recurrency-authentication/)
+- [Recurrency Domain Security](https://apis.io/security/recurrency/recurrency-domain-security/)
+- [Recurrency Vulnerability Disclosure](https://apis.io/security/recurrency/recurrency-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Recurrency Scopes](https://apis.io/scopes/recurrency/recurrency-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.recurrency.com/)
+- [Documentation](https://recurrency.gitbook.io/recurrency/)
+- [Sign up](https://www.recurrency.com/demo)
+- [Support](https://recurrency.gitbook.io/recurrency/support/need-help)
+- [Blog](https://www.recurrency.com/blog)
+- [Terms of service](https://www.recurrency.com/terms)
+- [Privacy policy](https://www.recurrency.com/privacy)
+- [GitHub](https://github.com/recurrency)
+
+## API Evangelist rating
+
+**Kin Score 36.1** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 14.8 |
+| Contract governance | 4.5 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 66.1 |
+| Access clarity | 34.2 |
+
+**Agent readiness 39.3** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 37.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/recurrency/](https://apis.io/providers/recurrency/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Recurrency: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/recurrency/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
